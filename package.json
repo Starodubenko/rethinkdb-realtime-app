@@ -1,0 +1,19 @@
+{
+  "name": "real-time-app",
+  "version": "1.0.0",
+  "description": "App is intended to show capabilities of RethingDB.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "RethinkDB",
+    "NodeJs",
+    "Real-time"
+  ],
+  "author": "Rodion Starodubenko",
+  "license": "MIT",
+  "dependencies": {
+    "rethinkdb": "^2.3.3"
+  }
+}
