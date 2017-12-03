@@ -28,15 +28,10 @@ export default ({ config, db }) => resource({
 
 	/** POST / - Create a new entity */
 	create({ body }, res) {
-		db.r.table('timeseries').insert(
-			[1,2,3,4,5,6,7,8,9,0].reduce((acc, item) => {
-				acc.push({
-					timestamp: Date.now(),
-					value: Math.random() * 10,
-				})
-				return acc;
-			}, [])
-		)
+		db.r.table('timeseries').insert({
+			timestamp: Date.now(),
+			value: Math.random() * 10,
+		})
 		.run(db.conn, function(err, result) {
 			if (err) throw err;
 			res.json(result);
