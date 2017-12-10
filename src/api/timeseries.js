@@ -28,13 +28,15 @@ export default ({ config, db }) => resource({
 
 	/** POST / - Create a new entity */
 	create({ body }, res) {
-		db.r.table('timeseries').insert({
-			timestamp: Date.now(),
-			value: Math.random() * 10,
-		})
+		db.r.table('timeseries').insert([
+			{
+				timestamp: Date.now(),
+				value: Math.random() * 10,
+			}
+		])
 		.run(db.conn, function(err, result) {
 			if (err) throw err;
-			res.json(result);
+			res.json(result.generated_keys);
 		})
 	},
 

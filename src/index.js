@@ -4,12 +4,15 @@ import cors from 'cors';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import initializeDb from './db';
+import initSockets from './sockets';
 import middleware from './middleware';
 import api from './api';
 import config from './config.json';
+import io from 'socket.io';
 
 let app = express();
 app.server = http.createServer(app);
+let sockets = io(app.server);
 
 // logger
 app.use(morgan('dev'));
@@ -25,6 +28,9 @@ app.use(bodyParser.json({
 
 // connect to db
 initializeDb( db => {
+
+	// init sockets
+	initSockets(db, sockets);
 
 	// internal middleware
 	app.use(middleware({ config, db }));
