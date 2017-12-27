@@ -31,7 +31,7 @@ export default ({ config, db }) => resource({
 		db.r.table('timeseries').insert([
 			{
 				timestamp: Date.now(),
-				value: Math.random() * 10,
+				value: body.value,
 			}
 		])
 		.run(db.conn, function(err, result) {
